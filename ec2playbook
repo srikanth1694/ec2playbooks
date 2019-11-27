@@ -1,0 +1,19 @@
+---
+- name: ec2 instance creation
+  hosts: localhost
+
+  tasks:
+    - name: lanch ec2 instance
+      ec2:
+        key_name: pemkey
+        aws_access_key: AKIAI572FI3UGZFVNIXQ
+        aws_secret_key: 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
+        region: us-east-2
+        instance_type: t2.small
+        image: ami-05c1fa8df71875112
+        group: launch-wizard-5
+        wait: yes
+        vpc_subnet_id: subnet-84d19efe
+        assign_public_ip: yes
+        count: 1
+      register: ec2
