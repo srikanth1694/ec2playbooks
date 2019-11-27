@@ -1,0 +1,26 @@
+---
+- name: Create an ec2 instance
+  hosts: local
+  gather_facts: true
+
+  vars:
+      region: ap-south-1
+      instance_type: t2.micro
+      ami: ami-0927ed83617754711
+      keypair: new
+  tasks:
+    - name: Create an ec2 instance
+      ec2:
+         aws_access_key: AKIAI572FI3UGZFVNIXQ
+         aws_secret_key: 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
+         key_name: "{{ keypair }}"
+         group: launch-wizard-2
+         instance_type: "{{ instance_type }}"
+         image: "{{ ami }}"
+         wait: true
+         region: "{{ region }}"
+         count: 1
+         vpc_subnet_id: subnet-f2bf9e9a
+         assign_public_ip: yes
+
+      register: ec2
